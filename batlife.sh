@@ -1,6 +1,7 @@
 # !/bin/bash
 
 # create a cron job to run batlife.sh at intervals
+# * * * * *  XDG_RUNTIME_DIR=/run/user/$(id -u) /home/username/batlife.sh
 
 BATTERY=$(cat /sys/class/power_supply/BAT0/capacity)
 CHARGER_PLUGGED_IN=$(cat /sys/class/power_supply/AC/online)
