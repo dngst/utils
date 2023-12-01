@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# set time to 31st October to play Pizza Tower pumpkin hunt
+# set date to 31st October to play Pizza Tower pumpkin hunt
 
 if [ "$1" ]; then
     if [ "$1" == "undo" ]; then
@@ -14,6 +14,6 @@ else
     if sudo timedatectl set-ntp false; then
         echo "NTP disabled."
         sudo timedatectl set-time "2023-10-31"
-        echo "Time set to October 31st."
+        echo "Date set to October 31st."
     fi
 fi
