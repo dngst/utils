@@ -6,11 +6,14 @@
 BATTERY=$(cat /sys/class/power_supply/BAT0/capacity)
 CHARGER_PLUGGED_IN=$(cat /sys/class/power_supply/AC/online)
 
-if [ "$CHARGER_PLUGGED_IN" -eq 1 ] && [ "$BATTERY" -eq 100 ]; then
-  notify-send "Battery" "100% Charged" && aplay /usr/share/sounds/sound-icons/prompt.wav
-fi
+notify() {
+  notify-send "Battery" "$1"
+  aplay /usr/share/sounds/sound-icons/prompt.wav
+}
 
-if [ "$CHARGER_PLUGGED_IN" -eq 0 ] && [ "$BATTERY" -lt 25 ]; then
-  notify-send "Battery" "Battery is below 25%" && aplay /usr/share/sounds/sound-icons/prompt.wav
+if [ "$CHARGER_PLUGGED_IN" -eq 1 ] && [ "$BATTERY" -eq 100 ]; then
+  notify "100% Charged"
+elif [ "$CHARGER_PLUGGED_IN" -eq 0 ] && [ "$BATTERY" -lt 25 ]; then
+  notify "Battery is below 25%"
 fi
 
