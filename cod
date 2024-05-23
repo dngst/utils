@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Open the game and sync save file when session is interrupted
+
+COD_DIR=~/.wine/drive_c/Program\ Files\ \(x86\)/Call\ of\ Duty\ Modern\ Warfare\ 3/
+
+sync_save_file() {
+    echo "Syncing save file..."
+    cd "$COD_DIR" 
+    cp -r players2/ ~/Dropbox/save\ files/
+}
+
+trap sync_save_file SIGINT
+
+cd "$COD_DIR" 
+wine iw5sp.exe
+
